@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken', # Django REST framework
     'djoser', # REST framework JWT
     'corsheaders', # CORS (Cross-Origin Resource Sharing) remove when going to production
+    'user_autentication', # new
 ]
 
 MIDDLEWARE = [
@@ -137,3 +138,13 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+AUTH_USER_MODEL = 'user_autentication.CustomUser'
+
+DJOSER = {
+    'SERIALIZERS': {
+        'user': 'user_autentication.serializers.CustomUserSerializer',
+        'current_user': 'user_autentication.serializers.CustomUserSerializer',
+        'user_create': 'user_autentication.serializers.CustomUserSerializer',
+    },
+}
