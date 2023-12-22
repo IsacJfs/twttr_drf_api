@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'djoser', # REST framework JWT
     'corsheaders', # CORS (Cross-Origin Resource Sharing) remove when going to production
     'user_autentication', # new
+    'posts', # new
 ]
 
 MIDDLEWARE = [
@@ -83,6 +84,15 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.TokenAuthentication',
     ),
 }
+
+# DJOSER
+
+DJOSER = {
+    'SERIALIZERS': {
+        'user_create': 'user_autentication.serializers.CustomUserCreateSerializer',
+    }
+}
+
 
 # CORS (Cross-Origin Resource Sharing) remove when going to production
 CORS_ALLOW_ALL_ORIGINS = True
@@ -138,13 +148,3 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
-AUTH_USER_MODEL = 'user_autentication.CustomUser'
-
-DJOSER = {
-    'SERIALIZERS': {
-        'user': 'user_autentication.serializers.CustomUserSerializer',
-        'current_user': 'user_autentication.serializers.CustomUserSerializer',
-        'user_create': 'user_autentication.serializers.CustomUserSerializer',
-    },
-}
