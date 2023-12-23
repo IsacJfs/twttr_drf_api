@@ -95,8 +95,7 @@ DJOSER = {
 
 
 # CORS (Cross-Origin Resource Sharing) remove when going to production
-CORS_ALLOW_ALL_ORIGINS = True
-
+CORS_ALLOWED_ORIGINS = ['http://localhost:5173']
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 

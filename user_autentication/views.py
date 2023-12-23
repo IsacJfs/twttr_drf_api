@@ -1,5 +1,6 @@
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from user_autentication.serializers import ProfileSerializer
+from django.shortcuts import get_object_or_404
 from .models import Profile
 
 class DetalheProfile(RetrieveAPIView):
@@ -7,8 +8,14 @@ class DetalheProfile(RetrieveAPIView):
     View para detalhar um perfil de usuário.
     Para exibir todos os perfis de usuários, use a view ListaProfile.
     """
-    queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
+
+    def get_object(self):
+        """
+        Retorna o perfil do usuário com base no username passado na URL.
+        """
+        username = self.kwargs.get('username')
+        return get_object_or_404(Profile, user__username=username)
 
 class ListaProfile(ListAPIView):
     """

@@ -13,8 +13,7 @@ class CustomUserCreateSerializer(UserCreateSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id', 'username', 'email', 'first_name', 'last_name']
-        # Inclua outros campos do modelo User que você deseja expor
+        fields = ['id', 'username', 'email', 'first_name', 'last_name', 'date_joined']
 
 class ProfileSerializer(serializers.ModelSerializer):
     user = UserSerializer(read_only=True)
@@ -23,15 +22,20 @@ class ProfileSerializer(serializers.ModelSerializer):
         many=True, read_only=True, slug_field="username", source="following"
     )
 
+    followers_count = serializers.SerializerMethodField()
+
     class Meta:
         model = Profile
         fields = [
             "id",
             "user",
-            "name",
             "description",
             "birthday",
             "profile_picture",
             "cover_picture",
             "following_usernames",
+            "followers_count",
         ]
+
+    def get_followers_count(self, obj):
+        return obj.followers.count()
