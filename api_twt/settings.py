@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'corsheaders', # CORS (Cross-Origin Resource Sharing) remove when going to production
     'user_autentication', # new
     'posts', # new
+    'comments', # new
 ]
 
 MIDDLEWARE = [

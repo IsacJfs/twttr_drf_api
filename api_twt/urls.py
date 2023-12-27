@@ -25,4 +25,5 @@ urlpatterns = [
     re_path(r'^auth/', include('djoser.urls.authtoken')),
     path('api/', include('posts.urls')), # new
     path('api/', include('user_autentication.urls')), # new
+    path('api/', include('comments.urls')), # new
 ]

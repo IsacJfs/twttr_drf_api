@@ -1,6 +1,6 @@
 from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView
-from .models import Postagem, Comentario
-from .serializers import PostagemSerializer, ComentarioSerializer, PostarSerializer
+from .models import Postagem
+from .serializers import PostagemFeedSerializer, PostagemSerializer, PostarSerializer
 from django.contrib.auth.models import User
 
 class PostagemPorUsuario(ListAPIView):
@@ -22,15 +22,6 @@ class DetalhePostagem(RetrieveAPIView):
 class AdicionarPostagem(CreateAPIView):
     serializer_class = PostarSerializer
 
-class ListaComentarios(ListAPIView):
-    serializer_class = ComentarioSerializer
-
-    def get_queryset(self):
-        return Comentario.objects.filter(postagem_id=self.kwargs['postagem_id'])
-
-class DetalheComentario(RetrieveAPIView):
-    queryset = Comentario.objects.all()
-    serializer_class = ComentarioSerializer
-
-class AdicionarComentario(CreateAPIView):
-    serializer_class = ComentarioSerializer
+class PostagemFeedView(ListAPIView):
+    queryset = Postagem.objects.all().prefetch_related('comentarios')
+    serializer_class = PostagemFeedSerializer
