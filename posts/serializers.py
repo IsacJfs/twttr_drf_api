@@ -15,7 +15,7 @@ class PostagemSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Postagem
-        fields = ['id', 'autor', 'autor_username', 'conteudo', 'data_criacao', 'data_atualizacao']
+        fields = '__all__'
 
     def create(self, validated_data):
         autor_username = validated_data.pop('autor_username', None)
@@ -46,3 +46,28 @@ class PostagemFeedSerializer(serializers.ModelSerializer):
     
     def get_autor_name(self, obj):
         return obj.autor.first_name + ' ' + obj.autor.last_name
+
+class CurtirSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Postagem
+        fields = ['id', 'curtidas']
+        read_only_fields = ['curtidas']
+        
+class CurtirPostagemSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Postagem
+        fields = ['id', 'curtidas']
+
+    def update(self, instance, validated_data):
+        request = self.context.get('request')
+        if not request or not request.user.is_authenticated:
+            raise serializers.ValidationError('Usuário não autenticado.')
+
+        user = request.user
+        if user in instance.curtidas.all():
+            instance.curtidas.remove(user)
+        else:
+            instance.curtidas.add(user)
+        instance.save()
+        return instance
+    

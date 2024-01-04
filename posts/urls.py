@@ -7,4 +7,5 @@ urlpatterns = [
     path('postagens/adicionar/', views.AdicionarPostagem.as_view(), name='adicionar_postagem'),
     path('postagens/<int:pk>/', views.DetalhePostagem.as_view(), name='detalhe_postagem'),
     path('postagens/<str:username>/', views.PostagemPorUsuario.as_view(), name='postagens_usuario'),
+    path('postagens/<int:pk>/curtir/', views.CurtirPostagemView.as_view(), name='curtir_postagem'),
 ]
