@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 import os
 from pathlib import Path
 from dotenv import load_dotenv # new
+import dj_database_url
 
 load_dotenv() # new
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -100,11 +101,15 @@ CORS_ALLOWED_ORIGINS = ['http://localhost:5173']
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {   
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+# DATABASES = {   
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
+DATABASES = {
+    'default': dj_database_url.config(default='postgres://admin_api:admin_password@db:5432/twitter_api')
 }
 
 
@@ -148,3 +153,7 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+ALLOWED_HOSTS = [
+    'cf34-181-233-129-43.ngrok-free.app'
+]
