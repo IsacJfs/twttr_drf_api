@@ -1,7 +1,7 @@
 version: '3.8'
 services:
   db:
-    image: postgres:13
+    image: postgres:13.0-alpine
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
@@ -9,10 +9,11 @@ services:
       - POSTGRES_USER=admin_api
       - POSTGRES_PASSWORD=admin_password
     ports:
-      - "5432:5432"
+      - "5433:5432"
 
   web:
     build: .
+    image: drf
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/app
@@ -22,6 +23,14 @@ services:
       - db
     environment:
       - DATABASE_URL=postgres://admin_api:admin_password@db/twitter_api
+
+  migration:
+    image: drf
+    command: python manage.py migrate --noinput
+    volumes:
+      - .:/app
+    depends_on:
+      - db
 
 volumes:
   postgres_data:

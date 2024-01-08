@@ -1,20 +1,22 @@
 # Use a imagem oficial do Python como base
-FROM python:3.11
+FROM python:3.10-slim
 
-# Defina o diretório de trabalho dentro do container
+ENV PYTHONUNBUFFERED 1
+
+# Define o diretório de trabalho dentro do container
 WORKDIR /app
 
-# Copie o arquivo de dependências para o container
+# Copia o arquivo de dependências para o container
 COPY requirements.txt .
 
-# Instale as dependências
+# Instala as dependências
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copie o resto do seu código para o container
+# Copia o resto do código para o container
 COPY . .
 
-# Exponha a porta que o Django usará
+# Expõe a porta que o Django usará
 EXPOSE 8000
 
-# Comando para iniciar sua aplicação
+# Comando para iniciar a aplicação
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
