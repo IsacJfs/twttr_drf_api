@@ -155,5 +155,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 ALLOWED_HOSTS = [
-    'cf34-181-233-129-43.ngrok-free.app'
+    'cf34-181-233-129-43.ngrok-free.app',
+    "127.0.0.1",
+    "localhost"
 ]
