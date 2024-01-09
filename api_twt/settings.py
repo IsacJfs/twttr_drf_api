@@ -97,7 +97,7 @@ DJOSER = {
 
 
 # CORS (Cross-Origin Resource Sharing) remove when going to production
-CORS_ALLOWED_ORIGINS = ['http://localhost:5173']
+CORS_ALLOWED_ORIGINS = ['http://localhost:5173', 'http://localhost:3000', 'https://bce8-181-233-129-43.ngrok-free.app']
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
@@ -109,7 +109,14 @@ CORS_ALLOWED_ORIGINS = ['http://localhost:5173']
 # }
 
 DATABASES = {
-    'default': dj_database_url.config(default='postgres://admin_api:admin_password@db:5432/twitter_api')
+    "default": {
+        "ENGINE": os.environ.get("SQL_ENGINE", "django.db.backends.sqlite3"),
+        "NAME": os.environ.get("SQL_DATABASE", BASE_DIR / "db.sqlite3"),
+        "USER": os.environ.get("SQL_USER", "user"),
+        "PASSWORD": os.environ.get("SQL_PASSWORD", "password"),
+        "HOST": os.environ.get("SQL_HOST", "localhost"),
+        "PORT": os.environ.get("SQL_PORT", "5432"),
+    },
 }
 
 
@@ -155,7 +162,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 ALLOWED_HOSTS = [
-    'cf34-181-233-129-43.ngrok-free.app',
+    "https://bce8-181-233-129-43.ngrok-free.app",
     "127.0.0.1",
     "localhost"
 ]
