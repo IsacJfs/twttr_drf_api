@@ -44,7 +44,7 @@ INSTALLED_APPS = [
     'rest_framework', # Django REST framework
     'rest_framework.authtoken', # Django REST framework
     'djoser', # REST framework JWT
-    # 'corsheaders', # CORS (Cross-Origin Resource Sharing) remove when going to production
+    'corsheaders', # CORS (Cross-Origin Resource Sharing) remove when going to production
     'user_autentication', # new
     'posts', # new
     'comments', # new
@@ -58,7 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    # 'corsheaders.middleware.CorsMiddleware', # CORS (Cross-Origin Resource Sharing) remove when going to production
+    'corsheaders.middleware.CorsMiddleware', # CORS (Cross-Origin Resource Sharing) remove when going to production
 ]
 
 ROOT_URLCONF = 'api_twt.urls'
@@ -97,20 +97,20 @@ DJOSER = {
 
 
 # CORS (Cross-Origin Resource Sharing) remove when going to production
-# CORS_ALLOWED_ORIGINS = ['http://localhost:5173']
+CORS_ALLOWED_ORIGINS = ['http://localhost:3000']
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# DATABASES = {   
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
-DATABASES = {
-    'default': dj_database_url.config(default='postgres://admin_api:admin_password@db:5432/twitter_api')
+DATABASES = {   
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
+
+# DATABASES = {
+#     'default': dj_database_url.config(default='postgres://admin_api:admin_password@db:5432/twitter_api')
+# }
 
 
 # Password validation
