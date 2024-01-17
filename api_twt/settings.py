@@ -29,9 +29,6 @@ SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")  # new
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -154,4 +151,4 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-ALLOWED_HOSTS = ["cf34-181-233-129-43.ngrok-free.app", "127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ["isacjfs.pythonanywhere.com", "127.0.0.1", "localhost"]
