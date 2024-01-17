@@ -5,12 +5,15 @@ from rest_framework import status
 from django.contrib.auth.models import User
 from .models import Postagem
 
+
 class CurtirPostagemTests(APITestCase):
     def setUp(self):
         self.client = APIClient()
-        self.user = User.objects.create_user(username='testuser', password='12345')
-        self.postagem = Postagem.objects.create(conteudo='Postagem de teste', autor=self.user)
-        self.url_curtir = reverse('curtir_postagem', kwargs={'pk': self.postagem.pk})
+        self.user = User.objects.create_user(username="testuser", password="12345")
+        self.postagem = Postagem.objects.create(
+            conteudo="Postagem de teste", autor=self.user
+        )
+        self.url_curtir = reverse("curtir_postagem", kwargs={"pk": self.postagem.pk})
         # self.url_descurtir = reverse('descurtir_postagem', kwargs={'pk': self.postagem.pk})
         self.client.force_authenticate(user=self.user)
 

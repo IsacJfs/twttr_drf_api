@@ -5,8 +5,8 @@ from .views.follow_views import follow_user, unfollow_user
 
 
 urlpatterns = [
-    path('profile/<str:username>/', ProfileDetailView.as_view(), name='profile-detail'),
-    path('profile/', ProfileListView.as_view(), name='profile-list'),
-    path('follow/', follow_user, name='follow-profile'),
-    path('unfollow/', unfollow_user, name='unfollow-profile'),
+    path("profile/<str:username>/", ProfileDetailView.as_view(), name="profile-detail"),
+    path("profile/", ProfileListView.as_view(), name="profile-list"),
+    path("follow/", follow_user, name="follow-profile"),
+    path("unfollow/", unfollow_user, name="unfollow-profile"),
 ]

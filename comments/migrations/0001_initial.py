@@ -6,24 +6,52 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     initial = True
 
     dependencies = [
-        ('posts', '__first__'),
+        ("posts", "__first__"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Comentario',
+            name="Comentario",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('conteudo', models.TextField(max_length=140)),
-                ('data_criacao', models.DateTimeField(auto_now_add=True)),
-                ('autor', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='comentarios', to=settings.AUTH_USER_MODEL)),
-                ('curtidas', models.ManyToManyField(blank=True, related_name='curtidas_comentarios', to=settings.AUTH_USER_MODEL)),
-                ('postagem', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='comentarios', to='posts.postagem')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("conteudo", models.TextField(max_length=140)),
+                ("data_criacao", models.DateTimeField(auto_now_add=True)),
+                (
+                    "autor",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="comentarios",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+                (
+                    "curtidas",
+                    models.ManyToManyField(
+                        blank=True,
+                        related_name="curtidas_comentarios",
+                        to=settings.AUTH_USER_MODEL,
+                    ),
+                ),
+                (
+                    "postagem",
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="comentarios",
+                        to="posts.postagem",
+                    ),
+                ),
             ],
         ),
     ]
