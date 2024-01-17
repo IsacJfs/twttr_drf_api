@@ -151,4 +151,4 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-ALLOWED_HOSTS = ["isacjfs.pythonanywhere.com", "127.0.0.1", "localhost"]
+ALLOWED_HOSTS = ["isacjfs.pythonanywhere.com", "127.0.0.1", "localhost", "xuiter.vercel.app"]
