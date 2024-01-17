@@ -94,7 +94,7 @@ DJOSER = {
 
 
 # CORS (Cross-Origin Resource Sharing) remove when going to production
-CORS_ALLOWED_ORIGINS = ["http://localhost:3000"]
+CORS_ALLOWED_ORIGINS = ["http://localhost:3000", "https://xuiter.vercel.app"]
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
